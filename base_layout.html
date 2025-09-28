@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-status-bar-style" content="black" />
+
+    <title>{{ title }}</title>
+
+
+    <link rel="apple-touch-icon" sizes="128x128" href="../static/img/logo.png">
+
+
+    {% assets "main_css" %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}">
+    {% endassets %}
+
+    <!-- json manifest -->
+    <link rel="manifest" href="../static/manifest.json">
+
+    <!-- cdnjs.com - Awesome Font -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+</head>
+<body>
+
+    <main>
+        <header>
+            <div class="top-head">
+                <div class="logo">
+                    <img src="static/img/LogoHead.png" alt="logo">
+                </div>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fas fa-bars" id="menu"></i>
+                    <i class="fas fa-times" id="close"></i>
+                </a>
+            </div>
+            <nav id="nav-links">
+                <ul class="nav__menu">
+                    <li id="icon-head" onclick="search()"><a href="javascript:void(0);"><i class="fas fa-search"></i>Search</a></li>
+                    <li id="icon-head"><a href="{{ url_for('views.home') }}"><i class="fas fa-home"></i>Home</a></li>
+                    <li id="icon-head"><a href="#"><i class="fas fa-qrcode"></i>iLMS QR</a></li>
+                    <li class="link"><a href="#"><i class="fab fa-buffer"></i>Category <i class="fas fa-caret-down"></i></a>
+                        <ul class="link-content">
+                            <li><a href="{{ url_for('views.category') }}">Category 1</a></li>
+                            <li><a href="{{ url_for('views.category') }}">Category 2</a></li>
+                            <li><a href="{{ url_for('views.category') }}">Category 3</a></li>
+                            <li><a href="{{ url_for('views.category') }}">Category 4</a></li>
+                        </ul>
+                    </li>
+                    <li class="link"><a href="#"><i class="fas fa-link"></i>Links <i class="fas fa-caret-down"></i></a>
+                        <ul class="link-content">
+                            <li><a href="{{ url_for('views.link') }}">Link 1</a></li>
+                            <li><a href="{{ url_for('views.link') }}">Link 2</a></li>
+                            <li><a href="{{ url_for('views.link') }}">Link 3</a></li>
+                            <li><a href="{{ url_for('views.link') }}">Link 4</a></li>
+                            <li><a href="{{ url_for('views.link') }}">Link 5</a></li>
+                        </ul>
+                    </li>
+                    <!-- {% if current_user.role == 'admin' %}
+                        <li><a href="#"><i class="fas fa-users-cog"></i>Admin</a></li>
+                    {% endif %} -->
+                    <!-- <li id="icon-head"><a href="#"><i class="far fa-address-card"></i>Contacts</a></li> -->
+                    <!-- <li id="icon-head"><a href="{{ url_for('views.register') }}"><i class="fas fa-user-plus"></i>Register</a></li> -->
+                    <li><a href="{{ url_for('views.contact') }}"><i class="far fa-address-card"></i>Contacts</a></li>
+                    {% if current_user.is_authenticated %}
+                        {% if current_user.role == 'admin' %}
+                            <li><a href="{{ url_for('admin.index') }}"><i class="fas fa-users-cog"></i>Admin</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('views.profile') }}"><i class="far fa-user"></i>Profile</a></li>
+                        <li><a href="{{ url_for('views.logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('views.register') }}"><i class="fas fa-user-plus"></i>Register</a></li>
+
+                        <li id="icon-head">
+                            <a onclick="toggleLogin()" class="first-button" href="javascript:void(0);">
+                            <i class="fas fa-sign-in-alt"></i>Login</a>
+                        </li>
+                    {% endif %}
+                    
+                </ul>
+            </nav>
+
+        </header>
+
+        <!-- Search method starts -->
+        <!-- <div class="search-wrapper" id="search">
+            <div class="search-content">
+                <form action="search" method="POST"></form>
+                    <div class="fa fa-search"></div>
+                    <input type="text" placeholder="Search" name="searchInput"/>
+                    <div class="fa fa-times"></div>
+                </form>
+            </div>
+        </div> -->
+         <!-- Search method ends -->
+
+         <!-- Search method starts -->
+        <div class="search-wrapper" id="search">
+            <div class="search-content">
+                <form action="search" method="POST">
+                    <div class="fa fa-times" onclick="closeSearch()"></div>
+                    <input type="text" placeholder="search item..." name="searchInput">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+         <!-- Search method ends -->
+
+        <!-- Login method starts -->
+        <div class="popup" id="popup-1">
+            <div class="login-content">
+                <div class="close-btn" onclick="toggleLogin()">x</div>
+                
+                <form action="login" method="POST">
+                    <h1>Sign in</h1>
+                    <div class="input-field">
+                        <input type="text" placeholder="Username" class="validate" name="username" required></div>
+                    <div class="input-field">
+                        <input type="password" placeholder="Password" class="validate" name="password" required></div>
+                    <button class="second-button">Sign in</button>
+                </form>
+                <p>Don't have an account? <br> <a href="{{ url_for('views.register') }}"> Register </a></p>
+
+            </div>
+        </div>
+        <!-- Login method end -->
+
+        <!-- Registration method starts -->
+        <!-- <div class="popup" id="popup-2">
+            <div class="login-content">
+                <div class="close-btn" onclick="toggleRegister()">x</div>
+                
+                <form action="register" method="POST">
+                    <h1>Register</h1>
+                    <div class="input-field">
+                        <input type="text" placeholder="Username" class="validate" name="username" required></div>
+                    <div class="input-field">
+                            <input type="text" placeholder="Contact" class="validate" name="contact" required></div>
+                    <div class="input-field">
+                        <input type="text" placeholder="Email" class="validate" name="email" required></div>
+                    <div class="input-field">
+                        <input type="text" placeholder="Dept" class="validate" name="dept" list="deptList" required>
+                        <datalist id="deptList">
+                            <option value="admin">  
+                            <option value="rota 1">
+                            <option value="rota 2">
+                            <option value="rota 3">
+                        </datalist>
+                    </div>
+                    <button class="second-button">Register</button>
+                </form>
+
+            </div>
+        </div> -->
+        <!-- Registration method end -->
+
+        <!-- Alert message popup -->
+
+        {%include "error_message.html"%}
+
+        <!-- Alert message popup Ends -->
+
+        <section>
+            {% block content %}
+
+            {% endblock %}
+        </section>
+    </main>
+
+    <footer>
+        <div class="app-footer">
+            <ul>
+                <li>
+                    <i class="fas fa-home"></i>
+                    <a href="{{ url_for('views.home') }}">Home</a>
+                </li>
+                <li>
+                    <i class="fas fa-qrcode"></i>
+                    <a href="#">iLMS QR</a>
+                </li>
+                <li onclick="search()">
+                    <i class="fas fa-search"></i>
+                    <a href="javascript:void(0);">Search</a>
+                </li>
+                {% if current_user.is_authenticated %}
+                <li>
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a href="{{ url_for('views.logout') }}">Logout</a>
+                </li>
+                {% else %}
+                <li>
+                    <i class="fas fa-sign-in-alt"></i>
+                    <a onclick="toggleLogin()" class="first-button" href="javascript:void(0);">Login</a>
+                </li>
+                {% endif %}
+
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu/Close function -->
+    <script>
+        function myFunction() {
+
+          var x = document.getElementById("nav-links");
+          var menu_icon = document.getElementById("menu");
+          var close_icon = document.getElementById("close");
+          if (x.style.display === "block") {
+            x.style.display = "none";
+            menu_icon.style.display = "inline-block";
+            close_icon.style.display = "none";
+          } else {
+            x.style.display = "block";
+            menu_icon.style.display = "none";
+            close_icon.style.display = "inline-block";
+          }
+
+        }
+    </script>
+
+    <!-- LOGIN BUTTON  -->
+    <script>
+        function toggleLogin(){
+            document.getElementById("popup-1")
+            .classList.toggle("active");
+        }
+    </script>
+
+    <!-- FOR SEARCH BUTTON -->
+    <script>
+        function search() {
+            var searchBtn = document.getElementById('search');
+            if (searchBtn.style.display === "block") {
+                searchBtn.style.display = "none";
+            } else {
+                searchBtn.style.display = "block";
+            }
+        }
+
+        function closeSearch() {
+            var searchBtn = document.getElementById('search');
+            searchBtn.style.display = "none";
+        }
+        
+    </script>
+
+</body>
+</html>
