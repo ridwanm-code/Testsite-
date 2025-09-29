@@ -1,0 +1,177 @@
+$radius: 0.2rem;
+
+.content-table {
+    width: 100%;
+
+    tbody {
+        tr, td {
+            font-size: 0.6rem;
+            letter-spacing: 0.35px;
+            color: #f1f1f1;
+            // background-color: #3c3f44;
+            background: #262626;
+            
+
+            
+            text-align: center;
+            // border: 1px solid #dee2e685;
+        }
+    }
+
+    .profile-img {
+        margin: auto;
+
+        img {
+            width: 100%;
+            height: 100%;
+            // border-radius: 50%;
+        }
+    }
+
+}
+
+@media(max-width: 768px) {
+    .content-table {
+        max-width: 720px;
+        // margin: 20px auto;
+
+        thead {
+            display: none;
+        }
+
+        tbody, tr, td {
+            display: block;
+            width: 100%;
+            padding: 6px;
+            max-height: 75vh;
+            overflow-y: scroll;
+            border-radius: 15px;
+        }
+
+        tbody {
+
+            
+            tr {
+                margin-bottom: 16px;
+                float: left;
+                clear: both;
+                
+
+                th::before, td::before {
+                    content: attr(data-label);
+                    display: block;
+
+                    font-size: 0.6rem;
+                    font-weight: 600;
+                    color: white;
+                    text-align: left;
+
+
+                    // text-align: left;
+                    // padding-left: 50%;
+                    // position: relative;
+                }
+
+                td {
+                    display: block;
+                    width: 55%;
+                    float: left;
+                    text-align: left;
+                    font-size: 0.6rem;
+                }
+            }
+
+            .td-ht {
+                width: 12em;
+                height: 16em;
+                // padding-left: 15px;
+                position: relative;
+                // border: solid thin;
+
+                .profile-img {
+                    position: absolute;
+                    width: 7.2rem;
+                    // height: 8rem;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    padding-top: 10px;
+
+                    img {
+                        border: solid thin white;
+                        border-radius: 15px;
+
+                    }
+                }
+
+                
+            }
+
+        }
+
+        tr {
+            margin-bottom: 15px;
+        }
+
+
+
+
+
+
+    }
+}
+
+// Laptop/deskstop screen landscape
+@media only screen 
+and (min-width: 1224px) 
+and (orientation: landscape){
+    .content-table {
+        // width: 100%;
+        // border-collapse: collapse;
+
+        thead {
+            background-color: $background-color;
+    
+            th {
+                text-transform: uppercase;
+    
+            }
+    
+            tr, th {
+                font-size: 0.8rem;
+                font-weight: 600;
+                letter-spacing: 0.35px;
+                color: #ffffff;
+                opacity: 1;
+                padding: 12px;
+                vertical-align: top;
+                // border: 1px solid #dee2e685;
+            }
+        }
+
+        tbody {
+            tr, td {
+                font-size: 1rem;
+                letter-spacing: 0.35px;
+                
+                padding: 8px;
+                // border: 1px solid #dee2e685;
+            }
+    
+            .profile-img {
+                width: 3.5rem;
+                height: 3.5rem;
+                // margin: auto;
+    
+                img {
+                    // width: 100%;
+                    // height: 100%;
+                    border-radius: 50%;
+                }
+            }
+    
+        }
+
+    }
+
+}

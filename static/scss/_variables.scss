@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+
+$accent: tomato;
+$text-main: #3a3a3a;
+$border-color: #fafafa;
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+// Dark mode color
+$background-color: #2b2b2b;
+$foreground-color: #1c1c1e;
+
+$color-main: #ff9f0a;
+$color-line: #bf5af2;
+
+// Label / contents
+$label-main: #ffffff;
+$label-primary: #9a9aa0;
+
+// Icon / Links
+$icon-primary: #008aff;
+$links-color: #98989e;
+
+// Input forms 
+$input-background: #262626;
+$input-value: #5e5e61;
+$input-border: #37373a;
+
+// Pop-up animation
+$transition: 250ms ease-in-out;

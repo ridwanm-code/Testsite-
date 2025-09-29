@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+/* * {
+  font-family: 'Ubuntu', sans-serif;
+} */
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-x: auto;
+}
+
+.container::-webkit-scrollbar {
+  width: 0;
+}
+
+.card {
+  min-width: 230px;
+  padding: 10px;
+  padding-bottom: 30px;
+  border-radius: 25px;
+  line-height: 1.5;
+  margin: 10px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  -webkit-box-shadow: 10px 10px 10px rgba(45, 55, 68, 0.3);
+          box-shadow: 10px 10px 10px rgba(45, 55, 68, 0.3);
+  background-image: linear-gradient(101deg, #274b74, #8233c5 48%, #e963fd);
+}
+
+.card .card-image {
+  background-size: cover;
+  margin: 10px;
+}
+
+.card .card-1 {
+  height: 170px;
+  background-image: url("/static/img/control-item.png");
+  background-size: 100% 100%;
+}
+
+.card .card-2 {
+  height: 170px;
+  background-image: url("/static/img/loan-items.png");
+  background-size: 100% 100%;
+}
+
+.card .card-3 {
+  height: 170px;
+  background-image: url("/static/img/disposal.png");
+  background-size: 100% 100%;
+}
+
+.card .card-4 {
+  height: 170px;
+  background-image: url("/static/img/Service-Maintenance.png");
+  background-size: 100% 100%;
+}
+
+.card h3 {
+  text-align: center;
+}
+
+.card p {
+  padding: 0px;
+  padding-bottom: 30px;
+  font-size: 0.8rem;
+}
+
+.card a {
+  color: white;
+  padding: 15px 50px;
+  border-radius: 25px;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  -webkit-box-shadow: 10px 10px 10px rgba(45, 55, 68, 0.3);
+          box-shadow: 10px 10px 10px rgba(45, 55, 68, 0.3);
+}
+
+.card a:hover {
+  background-color: #fff;
+  color: #1c1c1e;
+  -webkit-backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
+  border: 2px solid transparent;
+  border-radius: 25px;
+  background-clip: padding-box;
+  -webkit-box-shadow: 10px 10px 10px rgba(45, 55, 68, 0.3);
+          box-shadow: 10px 10px 10px rgba(45, 55, 68, 0.3);
+}
+
+.card:hover {
+  background-color: #3e3e3e;
+  color: white;
+  cursor: pointer;
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+}

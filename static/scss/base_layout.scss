@@ -1,0 +1,479 @@
+
+// Hover transition start
+@mixin hoverTransition {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    --slantness: 4rem;
+    &::after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        left: calc(
+            (100% + var(--slantness))
+            * -1);
+        top: 0%;
+        bottom: 0%;
+        width: calc(100% + var(--slantness));
+        clip-path: polygon(
+            0% 0%,
+            100% 0%,
+            calc(100% - var(--slantness)) 100%,
+            0% 100%
+        );
+        
+        background: $icon-primary;
+        opacity: 0;
+        
+        transition: all $transition;
+    }
+    
+    &:hover {
+        > i {
+            color: $background-color;
+        }
+    
+        &::after {
+            left: 0%;
+            opacity: 1;
+        }
+    }
+
+} // End Hover transition
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    display: flex;
+    flex-direction: column;
+    background: $foreground-color;
+}
+
+main {
+    flex: 1 0 auto;
+
+    header {
+        background: $background-color;
+        box-shadow: 3px 3px 8px 0px $background-color;
+        // padding: 0px 2rem;
+
+        .top-head {
+            .logo {
+
+                img {
+                    height: 2.6em;
+                }
+            }
+        }
+
+        nav {
+            margin: auto;
+
+            ul {
+                font-size: 1.2rem;
+            }
+
+            li {
+                list-style: none;
+            }
+
+            a {
+                text-decoration: none;
+                font-size: 1.2rem;
+                color: $links-color;
+
+                @include hoverTransition()
+            }
+
+            i {
+                // width: 1.5rem;
+                color: $icon-primary;
+                margin-right: .3em;
+                transition: all $transition;
+            }
+
+            li.link {
+                display: inline-block;
+            }
+
+            .link:hover .link-content {
+                display: flex;
+            }
+            
+            .link-content {
+                display: none;
+                flex-direction: column;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+        }
+    }
+
+    section {
+        padding: 20px 20px;
+        @include flex-center();
+
+    }
+}
+
+footer {
+    background: $background-color;
+    box-shadow: 3px 3px 8px 3px $background-color;
+    text-align: center;
+
+    .app-footer {
+        flex-shrink: 0;
+        color: $icon-primary;
+        padding: 0.5rem 0;
+
+        ul {
+            display: flex;
+            align-items: center;
+            padding-left: 0px;
+            justify-content: space-around;
+        }
+
+        li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 0.5rem;
+            color: $links-color;
+        }
+
+        li {
+            text-decoration: none;
+            color: $links-color;
+
+            @include hoverTransition()
+        }
+
+        i {
+            color: $icon-primary;
+
+            transition: all $transition;
+        }
+    }
+}
+
+// Smaller screen potrait/landscape
+@media only screen 
+and (max-device-width: 768px) {
+    .top-head {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+
+        .icon {
+            position: absolute;
+            cursor: pointer;
+            margin: 0rem 1rem;
+            right: 0;
+            color: inherit;
+            font-size: 1.7rem;
+
+            #close {
+                display: none;
+            }
+
+            #menu {
+                margin-top: 0.2rem;
+                display: inline-block;
+            }
+        }
+
+        i {
+            color: $icon-primary;
+        }
+    }
+
+    nav {
+        display: none;
+
+        .nav__menu {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 1rem;
+            padding-bottom: 1rem;
+
+            #icon-head {
+                display: none;
+            }
+        }
+    }
+
+
+    footer {
+        .app-footer {
+            padding: 0;
+            i {
+                font-size: 1.5rem;
+            }
+            a {
+                font-size: 0.7rem;
+            }
+        }
+    }
+
+} // END
+
+// tablet screen portrait
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+
+    .top-head {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+
+        .icon {
+            position: absolute;
+            cursor: pointer;
+            margin: 0rem 1rem;
+            right: 0;
+            color: inherit;
+            font-size: 1.7rem;
+
+            #close {
+                display: none;
+            }
+
+            #menu {
+                margin-top: 0.2rem;
+                display: inline-block;
+            }
+        }
+
+        i {
+            color: $icon-primary;
+        }
+    }
+
+    nav {
+        display: none;
+
+        .nav__menu {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 1rem;
+            padding-bottom: 1rem;
+
+            #icon-head {
+                display: none;
+            }
+        }
+    }
+
+    footer {
+        .app-footer {
+            padding: 0;
+    
+            i {
+                font-size: 1.7rem;
+            }
+            a {
+                font-size: 0.7rem;
+            }
+        }
+    }
+
+}
+
+// tablet screen landscape
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+
+    main {
+        display: flex;
+        flex-direction: column;
+        font-size: 1.7rem;
+        font-weight: 300;
+    
+        header {
+
+            .icon {
+                display: none;
+            }
+        
+            display: grid;
+            gap: 0.5rem;
+        
+            grid-template-columns: 
+            min-content
+            auto
+            max-content;
+            grid-template-areas: 
+            "logo nav";
+            
+            // * {
+            //     align-self: center;
+            // }
+            
+            .user {
+                justify-self: end;
+            }
+
+            #nav-links {
+                display: block !important;
+            }
+            
+            nav {
+                // display: block !important;
+                .link-content {
+                    position: absolute;
+                    background-color: $background-color;
+                    min-width: 160px;
+                }
+                
+                ul {
+                    justify-content: center;
+                    // font-size: 1.2rem;
+
+                    grid-area: nav;
+                    place-self: center;
+                    display: grid;
+                    grid-auto-flow: column;
+                    grid-auto-columns: max-content;
+                    gap: 0.5rem;
+                }
+
+                .nav__menu {
+                    #icon-head {
+                        display: none;
+                    }
+                }
+            }
+        
+            padding: 0.5rem 1rem;
+            width: 100%;
+
+            .logo {
+                grid-area: logo;
+                place-self: center;
+                margin-right: 1rem;
+                padding: 0.25rem;
+                font-size: 1.2rem;
+            }
+        } 
+
+    } // END
+
+
+    footer {
+        .app-footer {
+            font-size: .8rem;
+            padding-top: 0px;
+
+            i {
+                font-size: 1.5rem;
+            }
+        }
+
+    }
+
+}
+
+// Laptop/deskstop screen landscape
+@media only screen 
+and (min-width: 1224px) 
+and (orientation: landscape){
+
+    main {
+        display: flex;
+        flex-direction: column;
+        font-size: 1.7rem;
+        font-weight: 300;
+
+        header {
+
+            .icon {
+                display: none;
+            }
+        
+            display: grid;
+            gap: 0.5rem;
+            grid-template-columns: 
+            min-content
+            auto
+            max-content;
+            grid-template-areas: 
+            "logo nav";
+            
+            // * {
+            //     align-self: center;
+            // }
+
+            #nav-links {
+                display: block !important;
+            }
+            
+            nav {
+                // display: block !important;
+
+                .link-content {
+                    position: absolute;
+                    background-color: $background-color;
+                    min-width: 160px;
+                }
+                
+                ul {
+                    justify-content: center;
+                    grid-area: nav;
+                    place-self: center;
+                    display: grid;
+                    grid-auto-flow: column;
+                    grid-auto-columns: max-content;
+                    gap: 0.5rem;
+                }
+                a {
+                    font-size: 1rem;
+                }
+            }
+        
+            padding: 0.5rem 1rem;
+            width: 100%;
+
+            .logo {
+                grid-area: logo;
+                place-self: center;
+                margin-right: 1rem;
+                padding: 0.25rem;
+                font-size: 1.2rem;
+            }
+        } 
+    }
+
+    footer {
+        display: none;
+    }
+}
+
+
+/* FOR TESTING */

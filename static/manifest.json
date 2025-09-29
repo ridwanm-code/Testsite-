@@ -1,0 +1,13 @@
+{
+  "name": "TVFS LMS",
+  "short_name": "TVFS-LMS",
+  "lang": "en-US",
+  "display": "standalone",
+  "orientation": "landscape",
+  "start_url": "https://tvfs-testapp.herokuapp.com",
+  "scope": "https://tvfs-testapp.herokuapp.com",
+  "permissions": [ 
+    "unlimitedStorage",
+    "fullscreen"
+   ]
+}
